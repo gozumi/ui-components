@@ -1,35 +1,3 @@
-import { HierarchyNode, Selection } from 'd3'
-
-export interface IPartitionHierarchy {
-  title: string
-  type: string
-  value?: number
-  children?: IPartitionHierarchy[]
-}
-
-export interface IPartitionHierarchyDimensions {
-  x0?: number
-  x1?: number
-  y0?: number
-  y1?: number
-  origin?: {
-    x: number
-    y: number
-  }
-}
-
-export type PartitionHierarchyNode = HierarchyNode<IPartitionHierarchy> & IPartitionHierarchyDimensions
-
-export interface IDrawingSelections {
-  arrows: Selection<any, any, any, any>
-  nodes: Selection<any, any, any, any>
-  rectangles: Selection<any, any, any, any>
-  html: Selection<any, any, any, any>
-}
-
-export type NodeHandler = (d: PartitionHierarchyNode) => string
-
-
 type Times10 = (n: number) => number
 
 /**
@@ -46,22 +14,7 @@ type Times100 = (n: number) => number
  */
 export declare const times100: Times100
 
-export interface IAggregation {
-  aggregationType: string
-  name: string
-  children?: IAggregation[]
-}
-
-export interface ID3PartitionProps {
-  domNode: SVGSVGElement
-  aggregations: IPartitionHierarchy
-  aggregationChangeHandler: (order: string[]) => void
-  customNodeHtmlHandler?: NodeHandler
-  customNodeClassHandler?: NodeHandler
-  customNodeColourHandler?: NodeHandler
-}
-
-
-type RenderD3PartitionLayout = (props: ID3PartitionProps) => void
-
-export declare const renderD3PartitionLayout: RenderD3PartitionLayout
+/**
+ * Defines a component that renders a search box with related search results.
+ */
+export class SearchListComponent extends HTMLElement {}

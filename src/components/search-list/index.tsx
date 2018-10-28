@@ -13,6 +13,9 @@ function searchListReact (props: IProps) {
   )
 }
 
+/**
+ * Defines a component that renders a search box with related search results.
+ */
 export class SearchListComponent extends HTMLElement {
   public connectedCallback () {
     const mountPoint = document.createElement('div')

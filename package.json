@@ -1,14 +1,17 @@
 {
-  "name": "interactive-partition-layout",
+  "name": "ui-components",
   "version": "1.0.14",
   "description": "An interactive partition layout based on D3",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "scripts": {
-    "build": "rm -rf lib && webpack --config webpack.config.ts",
+    "install": "npm run-script build",
+    "build": "rm -rf lib && tsc && cp src/_typings/index.d.ts lib/. && cp src/components/search-list/styles.css lib/components/search-list/.",
+    "build2": "webpack --config webpack.config.ts",
+    "serve": "webpack-dev-server --config webpack.config.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "tslint --project tsconfig.json -c tslint.json",
-    "prepublishOnly": "rm -rf lib && webpack  -p --config webpack.config.ts"
+    "prepublishOnly": "rm -rf lib && webpack -p --config webpack.config.ts"
   },
   "repository": {
     "type": "git",
@@ -27,11 +30,16 @@
   ],
   "homepage": "https://github.com/gozumi/ui-components#readme",
   "devDependencies": {
-    "@types/copy-webpack-plugin": "^4.4.1",
+    "@types/clean-webpack-plugin": "^0.1.2",
+    "@types/copy-webpack-plugin": "^4.4.2",
+    "@types/html-webpack-plugin": "^3.2.0",
     "@types/react": "^16.4.18",
     "@types/react-dom": "^16.0.9",
-    "@types/webpack": "^4.1.5",
-    "copy-webpack-plugin": "^4.5.1",
+    "@types/webpack-dev-server": "^3.1.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.4",
+    "html-webpack-plugin": "^3.2.0",
+    "react-hot-loader": "^4.3.11",
     "standardts": "^1.0.0",
     "ts-loader": "^5.2.2",
     "ts-node": "^7.0.1",
@@ -40,7 +48,8 @@
     "tslint-sonarts": "^1.6.0",
     "typescript": "^3.1.3",
     "webpack": "^4.8.1",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
     "react": "^16.6.0",

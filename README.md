@@ -1,2 +1,2 @@
-# interactive-partition-layout
-An interactive partition layout built on D3
+# UI Components
+Clean UI components exposed as web components.
