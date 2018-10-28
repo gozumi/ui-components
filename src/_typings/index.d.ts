@@ -1,20 +1,20 @@
-type Times10 = (n: number) => number
+import { ISearchListProps } from 'components/search-list'
 
 /**
- * (D) Multiplies a given number by 10 and returns the result.
- * @param n The number to be multiplied by 10
+ * Defines a react component that renders a search box with related search results.
+ * @param props The properties passed into the component
  */
-export declare const times10: Times10
-
-type Times100 = (n: number) => number
-
-/**
- * (D) Multiplies a given number by 100 and returns the result.
- * @param n The number to be multiplied by 100
- */
-export declare const times100: Times100
+export const SearchListReact: (props: ISearchListProps) => JSX.Element
 
 /**
  * Defines a component that renders a search box with related search results.
  */
 export class SearchListComponent extends HTMLElement {}
+
+/**
+ * Takes an array of strings and returns a single string which is the result of
+ * concatentating these strings together. If any of the strings are undefined or
+ * null it will not be concatenated into the final result string.
+ * @param sArray The array of strings passed into the function
+ */
+export const concatClassNames: (sArray: string[]) => string
