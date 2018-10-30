@@ -1,25 +1,93 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import { concatClassNames } from 'utilities'
 import './styles.css'
 
-interface IProps {
-  value?: string
+export interface ISearchListProps {
+  className?: string
+  labelClassName?: string
+  inputClassName?: string
+  buttonClassName?: string
+  buttonIconClassName?: string
+  buttonLabelClassName?: string
+  hitsClassName?: string
+  term?: string
+  hits: string[]
+  label?: string
+  buttonLabel?: string
+  placeholder?: string
+  hideLabel?: boolean
+  hideButton?: boolean
+  onTermChange?: (newTerm: string) => void
+  onConfirmTerm?: () => void
 }
 
-function searchListReact (props: IProps) {
-  const { value } = props
+export function SearchListReact (props: ISearchListProps) {
+  const {
+    className, inputClassName, term, hits, label, labelClassName, placeholder,
+    buttonClassName, buttonLabel, buttonIconClassName, hitsClassName, onConfirmTerm,
+    onTermChange, buttonLabelClassName, hideLabel, hideButton
+  } = props
+  const hitsToRender = hits ? hits : []
+  const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => onTermChange && onTermChange(evt.target.value)
+  const handleKeyPress = (evt: React.KeyboardEvent<HTMLInputElement>) => onKeyPress(evt.charCode, onConfirmTerm)
+  const handleConfirnTerm = (_evt: React.MouseEvent<HTMLButtonElement>) => onConfirmation(onConfirmTerm)
+  const baseClass = 'search-list'
+
   return (
-    <input value={value} />
+    <div className={concatClassNames([baseClass, className])}>
+      {
+        !hideLabel &&
+        (
+          <label className={concatClassNames([`${baseClass}__label`, labelClassName])}>
+            {label}
+          </label>
+        )
+      }
+      <input
+        className={concatClassNames([`${baseClass}__input`, inputClassName])}
+        value={term}
+        placeholder={placeholder}
+        onChange={handleChange}
+        onKeyPress={handleKeyPress}
+      />
+      {
+        !hideButton &&
+        (
+          <button className={concatClassNames([`${baseClass}__button`, buttonClassName])} onClick={handleConfirnTerm}>
+            <span className={concatClassNames([`${baseClass}__button-label`, buttonLabelClassName])}>
+              {buttonLabel}
+            </span>
+            <span className={concatClassNames([`${baseClass}__button-icon`, buttonIconClassName])}></span>
+          </button>
+        )
+      }
+      {renderHits(hitsToRender, baseClass, hitsClassName)}
+    </div>
   )
 }
 
-/**
- * Defines a component that renders a search box with related search results.
- */
-export class SearchListComponent extends HTMLElement {
-  public connectedCallback () {
-    const mountPoint = document.createElement('div')
-    this.attachShadow({ mode: 'open' }).appendChild(mountPoint)
-    ReactDOM.render(searchListReact({}), mountPoint)
+function renderHits (hits: string[], baseClass: string, hitsClassName: string) {
+  if (hits.length > 0) {
+    return (
+      <ul className={concatClassNames([`${baseClass}__hits`, hitsClassName])}>
+        {hits.map(hitMapper)}
+      </ul>
+    )
+  } else {
+    return null
   }
+}
+
+function hitMapper (hit: string, idx: number) {
+  return (
+    <li key={idx}>{hit}</li>
+  )
+}
+
+function onKeyPress (charCode: number, confirm: () => void) {
+  (charCode === 13) && onConfirmation(confirm)
+}
+
+function onConfirmation (confirm: () => void) {
+  confirm && confirm()
 }
