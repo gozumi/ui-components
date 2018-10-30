@@ -1,15 +1,10 @@
-import { ISearchListProps } from 'components/search-list'
+import { ISearchListProps } from '../components/search-list'
 
 /**
  * Defines a react component that renders a search box with related search results.
  * @param props The properties passed into the component
  */
-export const SearchListReact: (props: ISearchListProps) => JSX.Element
-
-/**
- * Defines a component that renders a search box with related search results.
- */
-export class SearchListComponent extends HTMLElement {}
+export const SearchList: (props: ISearchListProps) => JSX.Element
 
 /**
  * Takes an array of strings and returns a single string which is the result of

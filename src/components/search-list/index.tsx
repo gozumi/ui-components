@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { concatClassNames } from 'utilities'
-import './styles.css'
+import { concatClassNames } from './../../utilities'
 
 export interface ISearchListProps {
   className?: string
@@ -21,7 +20,7 @@ export interface ISearchListProps {
   onConfirmTerm?: () => void
 }
 
-export function SearchListReact (props: ISearchListProps) {
+export function SearchList (props: ISearchListProps) {
   const {
     className, inputClassName, term, hits, label, labelClassName, placeholder,
     buttonClassName, buttonLabel, buttonIconClassName, hitsClassName, onConfirmTerm,

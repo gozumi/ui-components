@@ -6,7 +6,7 @@
   "types": "./lib/index.d.ts",
   "scripts": {
     "install": "npm run-script build",
-    "build": "rm -rf lib && tsc && cp src/_typings/index.d.ts lib/. && cp src/components/search-list/styles.css lib/components/search-list/.",
+    "build": "rm -rf lib && tsc && cp src/_typings/index.d.ts lib/.",
     "build2": "webpack --config webpack.config.ts",
     "serve": "webpack-dev-server --config webpack.config.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
